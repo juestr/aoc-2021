@@ -5,7 +5,7 @@ from scipy.sparse import csr_matrix, lil_matrix
 from scipy.sparse.csgraph import breadth_first_order
 
 
-with open('aoc9_input.txt') as f:
+with open('aoc09_input.txt') as f:
     a9 = np.genfromtxt(f, delimiter=1, dtype=np.int8)
 #print(a9)
 
