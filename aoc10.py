@@ -28,8 +28,8 @@ def score_unexpected(s):
         case 'unexpected', b:   return scores_unexpected[b]
         case _:                 return 0
 
-part1_score = sum(map(score_unexpected, a10))
-print(f'{part1_score=}')
+score = sum(map(score_unexpected, a10))
+print(f'Part1: {score=}')
 
 
 scores_missing = dict(zip(')]}>', (1, 2, 3, 4)))
@@ -42,5 +42,5 @@ def score_missing(s):
         case _:
             return 0
 
-part2_score = median(filter(None, map(score_missing, a10)))
-print(f'{part2_score=}')
+score = median(filter(None, map(score_missing, a10)))
+print(f'Part2: {score=}')
