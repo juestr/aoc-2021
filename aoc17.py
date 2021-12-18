@@ -10,7 +10,6 @@ with open('aoc17_input.txt') as f:
 pattern = re.compile(r'target area: x=(-?\d+)..(-?\d+), y=(-?\d+)..(-?\d+)')
 x1, x2, y1, y2 = map(int, pattern.match(a17).groups())
 print('target x=', x1, x2, 'y=', y1, y2)
-assert 0 <= x1 <= x2
 
 def sumn(n):
     return n * (n + 1) // 2
@@ -31,29 +30,28 @@ def min_vy0(t):
 def max_vy0(t):
     return floor(t/2 - 1/2 + y2/t)
 
-vx0_t = [(vx0, t)
-    for vx0 in range(1, x2+1)
-    for t in range(1, vx0+1)  # for now no zero x movements
-    if x1 <= (x:=distx(vx0, t)) <= x2]
+# vy0_min(t) = t/2 - 1/2 + y1/t
+# vy0_max(t) = t/2 - 1/2 + y2/t
+# For t >= t_limit it can be seen both bounds fall into (C+e, C+1/2-e)
+# for a 2C in N, a small 0<e<0.5 and y1, y2 not of opposite signs,
+# so no integer solution is possible.
+assert y1 * y2 >= 0, 'infinite solutions'
+t_limit = max(abs(y1), abs(y2)) * 2 + 1
 
-# vy0_min = t/2 + 1/2 + y1/t
-# vy0_max = t/2 + 1/2 + y2/t
-# no integer solution for vy0 in [vy0_min, vy0_max] beyond magic_limit?
-magic_limit = 1000  # ~ abs(y1) * abs(y2) ?
-for vx0, t in vx0_t[:]:
-    if vx0 == t:
-        # at t vx is zero and we are in target area
-        vx0_t += list(zip(repeat(vx0), range(t + 1, magic_limit)))
-        # could `break` here but for part 2
-
+# brute forcing this is easier than all analytical corner cases
 highest_y = max(maxheight(vy0, t)
-    for _, t in vx0_t if y1 <= disty((vy0:=max_vy0(t)), t) <= y2)
+    for vx0 in range(min(x1, 0), max(x2+1, 1))
+    for t in range(1, t_limit)
+    if x1 <= (x:=distx(vx0, t)) <= x2
+    if y1 <= disty((vy0:=max_vy0(t)), t) <= y2)
 
 print(f'Part 1: {highest_y=}')
 
 
 number = len({(vx0, vy0)
-    for vx0, t in vx0_t
+    for vx0 in range(1, x2+1)
+    for t in range(1, t_limit)
+    if x1 <= (x:=distx(vx0, t)) <= x2
     for vy0 in range(min_vy0(t), max_vy0(t)+1)})
 
 print(f'Part 2: {number=}')
