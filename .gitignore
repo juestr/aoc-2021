@@ -1,6 +1,5 @@
 # task .txt files
-aoc*.txt
-!*_input.txt
+aoc??.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

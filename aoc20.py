@@ -1,15 +1,12 @@
 #!/usr/bin/env python3
 
+import sys
 import numpy as np
 from scipy import ndimage
 
-# with open('aoc20_example.txt') as f:
-with open('aoc20_input.txt') as f:
-    a20 = f.read().splitlines()
+with open(sys.argv[1] if len(sys.argv) >= 2 else 'aoc20_input.txt') as f:
+    input = f.read().splitlines()
 
-
-algo = np.array([bit == '#' for bit in a20[0]], dtype=np.int16)
-img = np.array([[bit == '#' for bit in row] for row in a20[2:]], dtype=np.int16)
 
 def enhance(img, n):
     kernel = 1 << np.arange(9).reshape(3, 3)
@@ -19,6 +16,8 @@ def enhance(img, n):
         padded = algo[indices]
     return padded
 
+algo = np.array([bit == '#' for bit in input[0]], dtype=np.int16)
+img = np.array([[bit == '#' for bit in row] for row in input[2:]], dtype=np.int16)
 lit = np.sum(enhance(img, 2))
 
 print(f'Part 1: {lit=}')
