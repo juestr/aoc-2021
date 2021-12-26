@@ -1,0 +1,132 @@
+Sun Dec 26 16:20:55 CET 2021
+
+./aoc01.py
+Part 1: n1=1709
+Part 2: n2=1761
+0.03s user 0.01s system 60% cpu 0.068 total
+
+./aoc02.py
+Part 1: position * depth=1989265
+Part 2: position * depth=2089174012
+0.02s user 0.01s system 85% cpu 0.040 total
+
+./aoc03.py
+Part 1: power=3242606
+Part 2: lifesupport=4856080
+0.02s user 0.01s system 83% cpu 0.040 total
+
+./aoc04.py
+Part 1: first_score=2496
+Part 2: last_score=25925
+0.05s user 0.01s system 91% cpu 0.069 total
+
+./aoc05.py
+Part 1: danger_points=6841
+Part 2: danger_points2=19258
+0.18s user 0.03s system 97% cpu 0.211 total
+
+./aoc06.py
+Part 1: fish=366057
+Part 2: fish=1653559299811
+0.02s user 0.01s system 85% cpu 0.039 total
+
+./aoc07.py
+Part 1: x=344605
+Part 2: x2=93699985
+0.51s user 0.01s system 98% cpu 0.527 total
+
+./aoc08.py
+Part 1: digits1478=514
+Part 2: outputs_sum=1012272
+5.65s user 0.02s system 99% cpu 5.695 total
+
+./aoc09.py
+Part 1: risk=603
+Part 2: result=786780 largest=[94, 93, 90]
+0.53s user 0.16s system 165% cpu 0.418 total
+
+./aoc10.py
+Part1: score=240123
+Part2: score=3260812321
+0.03s user 0.01s system 84% cpu 0.052 total
+
+./aoc11.py
+Part 1: flashes=1640
+Part 2: at_step=312
+0.79s user 0.22s system 230% cpu 0.436 total
+
+./aoc12.py
+Part 1: paths=5920
+Part 2: paths=155477
+0.44s user 0.01s system 98% cpu 0.459 total
+
+./aoc13.py
+Part 1: n=763 dots1.shape=(894, 655)
+Part 2: dots2.shape=(6, 40)
+[[# # #     #     #     # #     #         # # #       # #     # # #       # #    ]
+ [#     #   #     #   #     #   #         #     #   #     #   #     #   #     #  ]
+ [#     #   # # # #   #     #   #         #     #   #         #     #   #     #  ]
+ [# # #     #     #   # # # #   #         # # #     #         # # #     # # # #  ]
+ [#   #     #     #   #     #   #         #   #     #     #   #   #     #     #  ]
+ [#     #   #     #   #     #   # # # #   #     #     # #     #     #   #     #  ]]
+0.39s user 0.09s system 288% cpu 0.168 total
+
+./aoc14.py
+Part 1: step10=3406
+Part 2: step40=3941782230241
+0.39s user 0.09s system 288% cpu 0.168 total
+
+./aoc15.py
+Part 1: risk=562
+Part 2: risk2=2874
+0.91s user 0.17s system 172% cpu 0.631 total
+
+./aoc16.py
+Part 1: sum_versions(top_packet)=927
+Part 2: packet_eval(top_packet)=1725277876501
+0.03s user 0.01s system 83% cpu 0.044 total
+
+./aoc17.py
+Part 1: highest_y=2278
+Part 2: number=996
+0.07s user 0.01s system 92% cpu 0.091 total
+
+./aoc18.py
+Part 1: result=4145
+Part 2: max_magnitude=4855
+10.16s user 0.05s system 99% cpu 10.269 total
+
+./aoc19.py
+Part 1: all_beacons=342
+Part 2: max_distance=9668
+2.42s user 0.13s system 120% cpu 2.109 total
+
+./aoc20.py
+Part 1: lit=5225
+Part 2: lit=18131
+0.82s user 0.19s system 377% cpu 0.268 total
+
+./aoc21.py
+Part 1: result=604998
+Part 2: result=157253621231420
+0.30s user 0.01s system 97% cpu 0.323 total
+
+./aoc22.py
+Part 1: on=623748
+Part 2: on=1227345351869476
+53.42s user 0.30s system 100% cpu 53.477 total
+
+./aoc23.py
+Part 1: energy=18170
+Part 2: energy2=50208
+21.29s user 0.16s system 99% cpu 21.632 total
+
+./aoc24.py
+Part 1: p1='98998519596997'
+Part 2: p2='31521119151421'
+0.03s user 0.01s system 84% cpu 0.045 total
+
+./aoc25.py
+Part 1: steps=400
+Part 2: sleigh started
+0.57s user 0.14s system 181% cpu 0.391 total
