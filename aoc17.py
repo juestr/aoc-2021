@@ -9,7 +9,7 @@ with open('aoc17_input.txt') as f:
 
 pattern = re.compile(r'target area: x=(-?\d+)..(-?\d+), y=(-?\d+)..(-?\d+)')
 x1, x2, y1, y2 = map(int, pattern.match(a17).groups())
-print('target x=', x1, x2, 'y=', y1, y2)
+# print('target x=', x1, x2, 'y=', y1, y2)
 
 def sumn(n):
     return n * (n + 1) // 2
@@ -42,7 +42,7 @@ t_limit = max(abs(y1), abs(y2)) * 2 + 1
 highest_y = max(maxheight(vy0, t)
     for vx0 in range(min(x1, 0), max(x2+1, 1))
     for t in range(1, t_limit)
-    if x1 <= (x:=distx(vx0, t)) <= x2
+    if x1 <= distx(vx0, t) <= x2
     if y1 <= disty((vy0:=max_vy0(t)), t) <= y2)
 
 print(f'Part 1: {highest_y=}')
@@ -51,7 +51,7 @@ print(f'Part 1: {highest_y=}')
 number = len({(vx0, vy0)
     for vx0 in range(1, x2+1)
     for t in range(1, t_limit)
-    if x1 <= (x:=distx(vx0, t)) <= x2
+    if x1 <= distx(vx0, t) <= x2
     for vy0 in range(min_vy0(t), max_vy0(t)+1)})
 
 print(f'Part 2: {number=}')

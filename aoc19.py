@@ -3,9 +3,9 @@
 from functools import reduce
 from itertools import product
 import numpy as np
+import sys
 
-# with open('aoc19_example.txt') as f:
-with open('aoc19_input.txt') as f:
+with open(sys.argv[1] if len(sys.argv) >= 2 else 'aoc19_input.txt') as f:
     a19 = f.read().splitlines()
 
 
@@ -49,7 +49,6 @@ for s1idx in range(len(scanner_data) - 1):
     for s2idx in unlocated[:]:
         match locate(s1beacons, scanner_data[s2idx]):
             case s2loc, s2beacons:
-                print('matching', s1idx, s2idx)
                 unlocated.remove(s2idx)
                 scanner_locs.append(s2loc)
                 beacons.append(s2beacons)

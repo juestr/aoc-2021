@@ -41,7 +41,6 @@ class SFN:
                     return None
                 case _, SFN(SFN() as a, b) if r:=explode_nested(a, lvl - 1):
                     new_a, dmg_left, dmg_right = r
-                    return SFN(r[0], add_left(b, r[2])), r[1], None
                     return SFN(new_a, add_left(b, dmg_right)), dmg_left, None
                 case _, SFN(a, SFN() as b) if r:=explode_nested(b, lvl - 1):
                     new_b, dmg_left, dmg_right = r
