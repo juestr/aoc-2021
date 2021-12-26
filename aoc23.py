@@ -27,7 +27,6 @@ def generate_paths(roomsize=2):
         *((2+i, 7+i) for i in range(4)),
         *((7+i+r*4, 7+i+(r+1)*4) for i in range(4) for r in range(roomsize-1)))
     neighbors = neighbors + tuple((b, a) for a, b in neighbors)
-
     paths = {(a, b): () for a, b in neighbors}
     for _ in range(5+roomsize):
         for (a, b), path in tuple(paths.items()):
@@ -39,11 +38,11 @@ def generate_paths(roomsize=2):
     for (a, b), path in tuple(paths.items()):
         if is_hallway(a) == is_hallway(b):
             del paths[(a, b)]
-
     return paths
 
-def search(paths, start, goal):
-    # todo: A* Search, h() = direct path to first cell in own room
+def search(start, goal, expand):
+    # A* looked promising here, but any gains were eaten up by extra effort
+    # to calculate h(), so I removed it again.
     queue = [(0, start)]
     seen = set()
     while queue:
@@ -52,29 +51,32 @@ def search(paths, start, goal):
             return cost
         elif state not in seen:
             seen.add(state)
-            for nextcost, nextstate in expand(paths, cost, state):
+            for nextcost, nextstate in expand(cost, state):
                 heappush(queue, (nextcost, nextstate))
     return None
 
-def expand(paths, cost, state):
-    for (a, b), path in paths.items():
-        if (t:=state[a]) and is_empty(state, b, *path):
-            is_hw = is_hallway(a)
-            is_fr = is_freed_room(state, t)
-            if (is_hw and is_own_room(t, b) and is_fr and is_filled_below(state, b)) \
-                    or (not is_hw and not (is_fr and is_own_room(t, a))):
-                temp = list(state)
-                temp[a], temp[b] = 0, temp[a]
-                newstate = tuple(temp)
-                newcost = cost + energy_table[t] * \
-                    (len(path) + 1 + sum(1 for u in (a, *path, b) if 1 <= u <= 5))
-                yield newcost, newstate
+def mkexpand(paths):
+    def expand(cost, state):
+        for (a, b), path in paths.items():
+            if a >= len(state): print('state', state, a)
+            if (t:=state[a]) and is_empty(state, b, *path):
+                is_hw = is_hallway(a)
+                is_fr = is_freed_room(state, t)
+                if (is_hw and is_own_room(t, b) and is_fr and is_filled_below(state, b)) \
+                        or (not is_hw and not (is_fr and is_own_room(t, a))):
+                    temp = list(state)
+                    temp[a], temp[b] = 0, temp[a]
+                    newstate = tuple(temp)
+                    newcost = cost + energy_table[t] * \
+                        (len(path) + 1 + sum(1 for u in (a, *path, b) if 1 <= u <= 5))
+                    yield newcost, newstate
+    return expand
 
 
 paths = generate_paths(roomsize=2)
 start = parse_state(input)
 goal = (0, 0, 0, 0, 0, 0, 0) + (1, 2, 3, 4) * 2
-energy = search(paths, start, goal)
+energy = search(start, goal, expand=mkexpand(paths))
 
 print(f'Part 1: {energy=}')
 
@@ -82,6 +84,6 @@ print(f'Part 1: {energy=}')
 paths2 = generate_paths(roomsize=4)
 start2 = (*start[:11],  4, 3, 2, 1,  4, 2, 1, 3,  *start[11:])
 goal2 = goal + (1, 2, 3, 4) * 2
-energy2 = search(paths2, start2, goal2)
+energy2 = search(start2, goal2, expand=mkexpand(paths2))
 
 print(f'Part 2: {energy2=}')
